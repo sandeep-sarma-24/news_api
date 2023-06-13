@@ -19,5 +19,8 @@
   "bugs": {
     "url": "https://github.com/sandeep-sarma-24/news_api/issues"
   },
-  "homepage": "https://github.com/sandeep-sarma-24/news_api/tree/main#readme"
+  "homepage": "https://github.com/sandeep-sarma-24/news_api/tree/main#readme",
+  "dependencies": {
+    "express": "^4.18.2"
+  }
 }

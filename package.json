@@ -1,0 +1,23 @@
+{
+  "name": "news_api",
+  "version": "1.0.0",
+  "description": "This API fetches the latest news from various categories (such as top news, world news, technology news, science news, and Hyderabad news) from Times of India's RSS feeds. It then processes and structures the fetched data, which includes the title, link, image URL, and description of each news item. This structured data is provided to the users as a JSON response over a simple HTTP GET endpoint (/toi). This makes it convenient for users or applications to consume the latest news data in a structured and easily accessible format.",
+  "main": "rest.js",
+  "scripts": {
+    "start": "node rest.js",
+    "test": "node rest.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sandeep-sarma-24/news_api.git#main"
+  },
+  "keywords": [
+    "API"
+  ],
+  "author": "Inguva Venkata Sandeep Sarma",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/sandeep-sarma-24/news_api/issues"
+  },
+  "homepage": "https://github.com/sandeep-sarma-24/news_api/tree/main#readme"
+}

@@ -1,8 +1,12 @@
-const express = require('express');
+const express = require('express')
 const axios = require('axios');
 const xml2js = require('xml2js');
-const app = express();
-const port = 3000;
+const db = require('@cyclic.sh/dynamodb')
+
+const app = express()
+
+app.use(express.json())
+app.use(express.urlencoded({ extended: true }))
 
 async function times_of_india() {
   const toi_news = {
@@ -49,6 +53,39 @@ app.get('/toi', async (req, res) => {
   res.json(news);
 });
 
+// CRUD operations for DynamoDB.
+app.post('/:col/:key', async (req, res) => {
+  const col = req.params.col
+  const key = req.params.key
+  const item = await db.collection(col).set(key, req.body)
+  res.json(item).end()
+})
+
+app.delete('/:col/:key', async (req, res) => {
+  const col = req.params.col
+  const key = req.params.key
+  const item = await db.collection(col).delete(key)
+  res.json(item).end()
+})
+
+app.get('/:col/:key', async (req, res) => {
+  const col = req.params.col
+  const key = req.params.key
+  const item = await db.collection(col).get(key)
+  res.json(item).end()
+})
+
+app.get('/:col', async (req, res) => {
+  const col = req.params.col
+  const items = await db.collection(col).list()
+  res.json(items).end()
+})
+
+app.use('*', (req, res) => {
+  res.json({ msg: 'no route handler found' }).end()
+})
+
+const port = process.env.PORT || 3000
 app.listen(port, () => {
   console.log(`App running on http://localhost:${port}`);
 });
